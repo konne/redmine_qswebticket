@@ -1,0 +1,44 @@
+<table>
+  <tbody>
+    <tr>
+      <th>Qlik Directory Name URL</th>
+      <td><input type="text" id="settings_qswebticket_directory_name" 
+            value="<%= settings['qswebticket_directory_name'] %>" 
+            name="settings[qswebticket_directory_name]" >
+    </tr>
+    <tr>
+      <th>Qlik Sense Host Search</th>
+      <td><input type="text" id="settings_qswebticket_search" 
+            value="<%= settings['qswebticket_search'] %>" 
+            name="settings[qswebticket_search]" >
+    </tr>
+    <tr>
+      <th>Qlik Sense Host Replace</th>
+      <td><input type="text" id="settings_qswebticket_replace" 
+            value="<%= settings['qswebticket_replace'] %>" 
+            name="settings[qswebticket_replace]" >
+    </tr>
+    <tr>
+      <th>Qlik Sense URL</th>
+      <td><input type="text" id="settings_qswebticket_url" 
+            value="<%= settings['qswebticket_url'] %>" 
+            name="settings[qswebticket_url]" >
+    </tr>
+    <tr>
+      <th>Qlik Sense userdata API Key (only with key enabled)</th>
+      <td><input type="text" id="settings_qswebticket_apikey" 
+	    value="<%= settings['qswebticket_apikey'] %>" 
+	    name="settings[qswebticket_apikey]" >
+    </tr>
+    <tr>
+      <th>Qlik Sense CERT</th>
+      <td>
+	<textarea id="settings_qswebticket_crt" cols="71" rows="20"
+             name="settings[qswebticket_crt]" ><%= settings['qswebticket_crt'] %></textarea>
+	<br>
+	Copy content of client.pem and client_key.pem from the directory
+	C:\ProgramData\Qlik\Sense\Repository\Exported Certificates\.Local Certificates\
+	into that textbox.
+    </tr>
+  </tbody>
+</table>
