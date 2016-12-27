@@ -2,7 +2,7 @@ require 'net/http'
 
 class QswebticketController < ApplicationController
 
-#  unloadable
+  unloadable
 
   def hub
     redirect_to Setting.plugin_redmine_qswebticket['qswebticket_url']+"/hub"
@@ -13,11 +13,12 @@ class QswebticketController < ApplicationController
   end
 
   def index
-    qps = params[:proxyRestUri]
 
+    qps = params[:proxyRestUri]
     if qps.blank?
         redirect_to Setting.plugin_redmine_qswebticket['qswebticket_url']+"/hub" and return
     end
+    qps = URI.unescape(qps)
 
     xrfkey = "894536737redmine"
 
