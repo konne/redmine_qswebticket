@@ -73,7 +73,7 @@ STORE users into [lib://REDMINE_USERDATA_DIR/users.csv] (txt, delimiter is ';');
 ## third settings.ini
 
 Now we come bigest obstacle what we had so solve.
-The [shema.ini](https://msdn.microsoft.com/en-us/library/ms709353(v=vs.85).aspx) in the directory
+The [schema.ini](https://msdn.microsoft.com/en-us/library/ms709353(v=vs.85).aspx) in the directory
 of the text database is the description of the layout of the database in the text files.
 You need this file because otherwise userid with names like E08020 are intepreted in
 the default as number and second to fix the UTF8 issue. Qlik stores txt files always in
@@ -81,6 +81,8 @@ UTF8 but if you read the documentation of the settings.ini or try to use the odb
 configuration dialog you don't find the possible to chosse utf8. Also the simple try
 to put in UTF8 or UTF-8 as CharacterSet is not working, but if you remember that any
 characterset in windows has a number you get it working with CharacterSet=65001.
+
+You have to only copy the folling text as schema.ini into the directory of the users and attributes text files
 
 ```
 [attributes.csv]
