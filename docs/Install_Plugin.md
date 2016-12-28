@@ -34,5 +34,5 @@ Restart the ruby / rails server.
 
 Go to the Roles & Permission and enable the following permission for the redmine roles.
 
-![roles](images/screenshot_redmine_roles.png)
+![roles](images/screenshot_redmine_roles.PNG)
 
