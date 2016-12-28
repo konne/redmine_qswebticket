@@ -70,6 +70,11 @@ STORE users into [lib://REDMINE_USERDATA_DIR/users.csv] (txt, delimiter is ';');
 
 ```
 
+If you like you can add in the app also a simple pivot table to analyse per user
+the attributes. This make sometimes debugging of security configs much easier.
+
+ ![APP](images/screenshot_sense_udc_app.png)
+
 ## Third settings.ini
 
 Now we come bigest obstacle what we had so solve.
@@ -113,3 +118,4 @@ Connection String:
 Driver={Microsoft Access Text Driver (*.txt, *.csv)};Extensions=csv;Dbq=C:\PATH_TO_YOUR_CSVS;
 ```
 ![UDC](images/screenshot_sense_udc_connection.png)
+
