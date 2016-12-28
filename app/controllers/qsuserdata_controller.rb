@@ -32,8 +32,8 @@ class QsuserdataController < ActionController::Base
     else
         ipRanges = []
 	ips.split(',').each do |ip|
-    	begin
-	        ipRanges << NetAddr::CIDR.create(ip.strip)
+    	    begin
+		ipRanges << NetAddr::CIDR.create(ip.strip)
 	    rescue => e
 		logger.error(e)
 		logger.error(ip)
@@ -49,7 +49,10 @@ class QsuserdataController < ActionController::Base
 	    end
 	end
 
-	ip_okay = !(ipRanges.select {|cidr| cidr.contains?(client_ip) }.empty?)
+	ip_okay = !(ipRanges.select {|cidr| cidr.contains?(client_ip) || cidr.to_s==client_ip+"/32" }.empty?)
+	if !ip_okay
+	    logger.info("ip restricted "+client_ip)
+	end
     end
 
     unless (!api_key.blank? && params[:key].to_s == api_key) && ip_okay
