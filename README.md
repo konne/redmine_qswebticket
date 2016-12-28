@@ -1,4 +1,4 @@
-# redmine_qvredirect
+# redmine_qswebticket
 
 This easyredmine plugin helps you to use the users and all user informations in Qlik Sense.
 It also provides a webticket authentification for all user from redmine into Qlik Sense.
