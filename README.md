@@ -10,3 +10,9 @@ so please feel inspired.
 1. [Plugin](docs/Install_Plugin.md)
 2. [UDC](docs/Install_UDC.md)
 3. [Proxy](docs/Install_Proxy.md)
+
+## Bugs & Co.
+
+Feel free to open issues or send me PRs for changes.
+If you need a support for that, just contact akquinet we can
+provide also commercial support for that product.
