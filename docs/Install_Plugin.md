@@ -29,3 +29,10 @@ Restart the ruby / rails server.
 ![users](images/screenshot_redmine_rest_users.png)
 
 ![attributes](images/screenshot_redmine_rest_attributes.png)
+
+## Fourth enable the menu button
+
+Go to the Roles & Permission and enable the following permission for the redmine roles.
+
+![roles](images/screenshot_redmine_roles.png)
+
