@@ -2,6 +2,8 @@ require 'net/http'
 
 class QswebticketController < ApplicationController
 
+  before_filter :check_permission
+
   unloadable
 
   def hub
@@ -73,4 +75,14 @@ class QswebticketController < ApplicationController
 
     redirect_to val
   end
+
+  def check_permission
+    if User.current.allowed_to_globally?(:qswebticket_qmc) || User.current.allowed_to_globally?(:qswebticket_hub)
+      return true
+    else
+      flash[:error] = "permission denied"
+      redirect_to "/"
+    end
+  end
+
 end

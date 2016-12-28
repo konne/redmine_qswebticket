@@ -1,3 +1,5 @@
-# English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  permission_qswebticket_qmc: 'Qlik Sense QMC'
+  permission_qswebticket_hub: 'Qlik Sense HUB'
+  permission_qswebticket: 'Qlik Sense'
+

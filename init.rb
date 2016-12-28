@@ -9,9 +9,30 @@ Redmine::Plugin.register :redmine_qswebticket do
   Redmine::MenuManager.map :top_menu do |menu|
     menu.push :qswebticket, {},  :caption => 'Qlik', :html => {:class => 'icon icon-chart'}
 
-    menu.push :qs_hub, { :controller => 'qswebticket', :action => 'hub' },:parent => :qswebticket, :caption => 'HUB'
-    menu.push :qs_qmc, { :controller => 'qswebticket', :action => 'qmc' },:parent => :qswebticket, :caption => 'QMC'
+    menu.push :qswebticket_hub, { :controller => 'qswebticket', :action => 'hub' },
+		:parent => :qswebticket, 
+		:caption => 'HUB',
+		:if => lambda{|project| User.current.allowed_to_globally?(:qswebticket_hub, {})}
+    menu.push :qswebticket_qmc, { :controller => 'qswebticket', :action => 'qmc' },
+		:parent => :qswebticket, 
+		:caption => 'QMC',
+		:if => lambda{|project| User.current.allowed_to_globally?(:qswebticket_qmc, {})}
   end
+
+  Redmine::AccessControl.map do |map|
+    map.permission :qswebticket_hub, { qswebticket: [:index, :hub]}, global: true
+    map.permission :qswebticket_qmc, { qswebticket: [:index, :qmc]}, global: true
+  end
+
+#  Redmine::AccessControl.map do |map|
+#    map.project_module :user_deputies do |pmap|
+#      pmap.permission :edit_deputies, { user_deputies: [:index, :move_up, :move_down, :create, :delete, :set_availabilities] }, global: true
+#      pmap.permission :have_deputies, { user_deputies: [:index, :move_up, :move_down, :create, :delete, :set_availabilities] }
+#      pmap.permission :be_deputy,     { user_deputies: [] }
+#    end
+#  end
+
 
   settings :default => {'empty' => true}, :partial => 'settings/qswebticket_settings'
 end
+
