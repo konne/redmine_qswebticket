@@ -70,7 +70,7 @@ STORE users into [lib://REDMINE_USERDATA_DIR/users.csv] (txt, delimiter is ';');
 
 ```
 
-## third settings.ini
+## Third settings.ini
 
 Now we come bigest obstacle what we had so solve.
 The [schema.ini](https://msdn.microsoft.com/en-us/library/ms709353(v=vs.85).aspx) in the directory
@@ -106,7 +106,7 @@ Col3=NAME Char Width 255
 ```
 
 
-## fourth install UDC
+## Fourth install UDC
 
 Connection String:
 ```
