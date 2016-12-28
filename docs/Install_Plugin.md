@@ -16,6 +16,7 @@ Restart the ruby / rails server.
 | Qlik Sense Host Replace  |   |
 | Qlik Sense URL           | The URL of the Qlik Sense System without /hub or /qmc. You have to add a second virtuals proxy with an own name. |
 | Qlik Sense userdata API Key | The plugin offers all user datas and attributes with a rest api. To enable the endpoint you have to fill in an API Key |
+| Qlik Sense userdata IP restriction | you can fill in a simple IP or even a list of IPs for that the connection is allowed |
 | Qlik Sense CERT           | The Client Cert for the authentification of the redmine plugin against the Qlik Sense Server. You have to fill the conten of the client.pem and the client_key.pem from that directory C:\ProgramData\Qlik\Sense\Repository\Exported Certificates\.Local Certificates\ to that field.
 
 
