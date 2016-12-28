@@ -4,6 +4,8 @@
 ```
 cd [redminedir]/plugins
 git clone https://github.com/konne/redmine_qswebticket
+cd ..
+bundle install
 ```
 Restart the ruby / rails server.
 
