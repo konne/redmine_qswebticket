@@ -2,7 +2,7 @@ require 'net/http'
 
 class QsuserdataController < ActionController::Base
 
-# unloadable 
+ unloadable 
 
   before_filter :check_enabled
 
@@ -23,9 +23,37 @@ class QsuserdataController < ActionController::Base
     User.current = nil
 
     api_key = Setting.plugin_redmine_qswebticket['qswebticket_apikey']
+    ips=Setting.plugin_redmine_qswebticket['qswebticket_ip_restriction']
 
-    unless !api_key.blank? && params[:key].to_s == api_key
-      render :text => 'Access denied. Userdata fetch is disabled or key is invalid.', :status => 403
+    ip_okay=false
+
+    if ips.blank?
+	ip_okay=true
+    else
+        ipRanges = []
+	ips.split(',').each do |ip|
+    	begin
+	        ipRanges << NetAddr::CIDR.create(ip.strip)
+	    rescue => e
+		logger.error(e)
+		logger.error(ip)
+	    end
+	end
+
+	client_ip=request.remote_ip.to_s;
+
+        if client_ip = "127.0.0.1"
+	    client_ip=request.env['HTTP_X_FORWARDED_FOR']
+	    if client_ip.blank?
+		client_ip="127.0.0.1"
+	    end
+	end
+
+	ip_okay = !(ipRanges.select {|cidr| cidr.contains?(client_ip) }.empty?)
+    end
+
+    unless (!api_key.blank? && params[:key].to_s == api_key) && ip_okay
+      render :text => 'Access denied. Userdata fetch is disabled, iprange not okay or key is invalid.', :status => 403
       return false
     end
   end
