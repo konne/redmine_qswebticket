@@ -62,16 +62,40 @@ class QswebticketController < ApplicationController
     req.add_field("X-Qlik-Xrfkey", xrfkey)
     req.body = "{'UserDirectory':'"+directory_name+"', 'UserId':'" +User.current.login + "', 'Attributes':[]" + targetId + " }"
 
-    res = https.request(req)
-
-    obj = JSON.parse res.body
-
-    targetURI = obj["TargetUri"]
-    if targetURI.blank?
-	targetURI =  Setting.plugin_redmine_qswebticket['qsredirect_url']
+    begin
+	res = https.request(req)
+	obj = JSON.parse res.body
+    rescue
+	req.body = "{'UserDirectory':'"+directory_name+"', 'UserId':'" +User.current.login + "', 'Attributes':[]" + " }"
+	res = https.request(req)
+	obj = JSON.parse res.body
     end
 
-    val =targetURI +"?qlikTicket="+obj["Ticket"]
+    begin
+        targetURI = obj["TargetUri"]
+    rescue
+        targetURI = ""
+    end
+
+    logger.error(targetURI)
+    if targetURI.blank?
+	targetURI =  Setting.plugin_redmine_qswebticket['qswebticket_url']
+    end
+
+    val = targetURI
+
+    begin
+        resultUri = URI.parse(targetURI)
+        if resultUri.query.blank?
+    	    val = val +"?"
+	else
+	    val = val +"&"
+	end
+    rescue
+    	val = val +"?"
+    end
+
+    val = val +"QlikTicket="+obj["Ticket"]
 
     redirect_to val
   end
